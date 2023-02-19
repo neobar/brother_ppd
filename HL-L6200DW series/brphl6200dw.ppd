@@ -1,1 +1,697 @@
+*PPD-Adobe: "4.3"
+*%================================================
+*%	Copyright(C) 2015 Brother Industries, Ltd.
+*%	"Brother HL-L6200DW BR-Script3"
+*%================================================
+
+*%==== General Information Keywords ========================
+*FormatVersion: "4.3"
+*FileVersion: "1.0"
+*LanguageEncoding: ISOLatin1
+*LanguageVersion: English
+*Manufacturer: "Brother"
+*PCFileName: "BRPHL6200DW.PPD"
+*Product: "(Brother HL-L6200DW series)"
+*PSVersion: "(3010.106) 3"
+*ShortNickName: "Brother HL-L6200DW BR-Script3"
+*ModelName: "Brother HL-L6200DW BR-Script3"
+*NickName: "Brother HL-L6200DW BR-Script3"
+
+*%==== Basic Device Capabilities =============
+*LanguageLevel: "3"
+*TTRasterizer: Type42
+*ColorDevice: False
+*DefaultColorSpace: Gray
+*FileSystem: True
+*?FileSystem:"
+save 
+	/devname (%disk0%) def 
+	/ret false def 
+	0 1 7{ 
+		devname exch 48 add 5 exch put 
+		devname devstatus { 
+			0 ne {/ret true def}if 
+			pop pop pop pop pop pop pop 
+		}if 
+	}for 
+	ret {(True)}{(False)} ifelse = flush 
+restore 
+" 
+*End
+
+*Throughput: "UNKNOWN"
+*FreeVM: "8888000"
+
+*%==== Emulations and Protocols ==========
+*Protocols: TBCP
+
+*SuggestedJobTimeout: "0"
+*SuggestedWaitTimeout: "300"
+*PrintPSErrors: True
+
+*%==== JCL Features ==========================
+*%JCLBegin:           "<1B>%-12345X@PJL JOB<0A>"
+*%JCLToPSInterpreter: "@PJL ENTER LANGUAGE = POSTSCRIPT <0A>"
+*%JCLEnd:             "<1B>%-12345X@PJL EOJ <0A><1B>%-12345X"
+
+*%==== Installable Options ===================
+
+*%*OpenGroup: InstallableOptions/Options Installed
+
+*%*OpenUI *OptionTrays/Number of Input Trays: PickOne
+*%*DefaultOptionTrays: 2Trays
+*%*OptionTrays 1Trays/ 1: ""
+*%*OptionTrays 2Trays/ 2: ""
+*%*?OptionTrays:"
+*%save
+*%	<</BRFeeder 1>>setpagedevice currentpagedevice/BRFeeder get
+*%	1 eq{(2Trays)}{(1Trays)}ifelse
+*%	= flush 
+*%restore 
+*%"
+*%*End
+*%*CloseUI: *OptionTrays
+
+*%*CloseGroup: InstallableOptions
+
+*%*UIConstraints: *OptionTrays 1Trays *InputSlot Tray2
+*%*UIConstraints: *InputSlot Tray2 *OptionTrays 1Trays
+
+
+*%*UIConstraints: *CAPT Fine *TonerSaveMode True
+*%*UIConstraints: *TonerSaveMode True *CAPT Fine
+
+
+*%*UIConstraints: *OutputBin AutoSelect *BROutbinFull True
+*%*UIConstraints: *BROutbinFull True *OutputBin AutoSelect
+*%*UIConstraints: *OutputBin Standard *BROutbinFull True
+*%*UIConstraints: *BROutbinFull True *OutputBin Standard
+*%*UIConstraints: *OutputBin Stacker *BROutbinFull True
+*%*UIConstraints: *BROutbinFull True *OutputBin Stacker
+
+
+*%==== Media Selection ======================
+
+*OpenUI *PageSize: PickOne
+*OrderDependency: 30 AnySetup *PageSize
+*DefaultPageSize: Letter
+*PageSize Letter/<4c6574746572>: "<< /PageSize [612 792] /ImagingBBox null >> setpagedevice"
+*PageSize Legal/<4c6567616c>: "<< /PageSize [612 1008] /ImagingBBox null >> setpagedevice"
+*PageSize Executive/<457865637574697665>: "<< /PageSize [522 756] /ImagingBBox null >> setpagedevice"
+*PageSize A4/<4134>: "<< /PageSize [595 842] /ImagingBBox null >> setpagedevice"
+*PageSize A5/<4135>: "<< /PageSize [420 595] /ImagingBBox null >> setpagedevice"
+*PageSize A5L/<4135204c6f6e672045646765>: "<< /PageSize [595 419] /ImagingBBox null >> setpagedevice"
+*PageSize A6/<4136>: "<< /PageSize [297 420] /ImagingBBox null >> setpagedevice"
+*PageSize Env10/<436f6d2d3130>: "<< /PageSize [297 684] /ImagingBBox null >> setpagedevice"
+*PageSize EnvMonarch/<4d6f6e61726368>: "<</PageSize [279 540] /ImagingBBox null>> setpagedevice"
+*PageSize EnvDL/<444c>: "<< /PageSize [312 624] /ImagingBBox null >> setpagedevice"
+*PageSize EnvC5/<4335>: "<</PageSize [459 649] /ImagingBBox null>> setpagedevice"
+*PageSize EnvISOB5/<4235>: "<< /PageSize [499 709] /ImagingBBox null >> setpagedevice"
+*%*PageSize EnvISOB6/B6 : "<< /PageSize [354 499] /ImagingBBox null >> setpagedevice"
+*PageSize FanFoldGermanLegal/<466f6c696f>: "<< /PageSize [612 936] /ImagingBBox null >> setpagedevice"
+*PageSize 3x5/<3320782035>: "<< /PageSize [216 360] /ImagingBBox null >> setpagedevice"
+*PageSize MexicanLegal/<4d657869636f204c6567616c>: "<< /PageSize [612 963] /ImagingBBox null >> setpagedevice" 
+*PageSize IndiaLegal/<496e646961204c6567616c>: "<< /PageSize [609 978] /ImagingBBox null >> setpagedevice" 
+*CloseUI: *PageSize
+
+*OpenUI *PageRegion: PickOne
+*OrderDependency: 40 AnySetup *PageRegion
+*DefaultPageRegion: Letter
+*PageRegion Letter/<4c6574746572>: "<< /PageSize [612 792] /ImagingBBox null >> setpagedevice"
+*PageRegion Legal/<4c6567616c>: "<< /PageSize [612 1008] /ImagingBBox null >> setpagedevice"
+*PageRegion Executive/<457865637574697665>: "<< /PageSize [522 756] /ImagingBBox null >> setpagedevice"
+*PageRegion A4/<4134>: "<< /PageSize [595 842] /ImagingBBox null >> setpagedevice"
+*PageRegion A5/<4135>: "<< /PageSize [420 595] /ImagingBBox null >> setpagedevice"
+*PageRegion A5L/<4135204c6f6e672045646765>: "<< /PageSize [595 419] /ImagingBBox null >> setpagedevice"
+*PageRegion A6/<4136>: "<< /PageSize [297 420] /ImagingBBox null >> setpagedevice"
+*PageRegion Env10/<436f6d2d3130>: "<< /PageSize [297 684] /ImagingBBox null >> setpagedevice"
+*PageRegion EnvMonarch/<4d6f6e61726368>: "<</PageSize [279 540] /ImagingBBox null>> setpagedevice"
+*PageRegion EnvDL/<444c>: "<< /PageSize [312 624] /ImagingBBox null >> setpagedevice"
+*PageRegion EnvC5/<4335>: "<</PageSize [459 649] /ImagingBBox null>> setpagedevice"
+*PageRegion EnvISOB5/<4235>: "<< /PageSize [499 709] /ImagingBBox null >> setpagedevice"
+*%*PageRegion EnvISOB6/B6 : "<< /PageSize [354 499] /ImagingBBox null >> setpagedevice"
+*PageRegion FanFoldGermanLegal/<466f6c696f>: "<< /PageSize [612 936] /ImagingBBox null >> setpagedevice"
+*PageRegion 3x5/<3320782035>: "<< /PageSize [216 360] /ImagingBBox null >> setpagedevice"
+*PageRegion MexicanLegal/<4d657869636f204c6567616c>: "<< /PageSize [612 963] /ImagingBBox null >> setpagedevice" 
+*PageRegion IndiaLegal/<496e646961204c6567616c>: "<< /PageSize [609 978] /ImagingBBox null >> setpagedevice"
+*CloseUI: *PageRegion
+
+*DefaultImageableArea: Letter
+*ImageableArea Letter/<4c6574746572>: "12.0 12.12 599.88 780.0"
+*ImageableArea Legal/<4c6567616c>: "12.0 12.12 599.88 996.0"
+*ImageableArea Executive/<457865637574697665>: "11.99 12.12 510.0 744.0"
+*ImageableArea A4/<4134>: "12.0 12.24 583.08 829.92"
+*ImageableArea A5/<4135>: "12.0 11.88 407.4 582.96"
+*ImageableArea A5L/<4135204c6f6e672045646765>: "12.0 11.88 407.4 582.96"
+*ImageableArea A6/<4136>: "12.0 12.6 285.48 408.0"
+*ImageableArea Env10/<436f6d2d3130>: "12.0 12.12 284.88 672.0"
+*ImageableArea EnvMonarch/<4d6f6e61726368>: "12.0 12.12 266.76 528.0"
+*ImageableArea EnvDL/<444c>: "12.0 12.24 299.88 612.0"
+*ImageableArea EnvC5/<4335>: "12.0 12.24 446.76 636.96"
+*ImageableArea EnvISOB5/<4235>: "12.0 12.48 486.72 696.96"
+*%*ImageableArea EnvISOB6/B6 : "12.0 12.24 342.12 486.96"
+*ImageableArea FanFoldGermanLegal/<466f6c696f>: "12.0 12.12 599.88 924.0"
+*ImageableArea 3x5/<3320782035>: "12.0 12.12 204.00 348.00"
+*ImageableArea MexicanLegal/<4d657869636f204c6567616c>: "12.0 12.0 600.0 951.36" 
+*ImageableArea IndiaLegal/<496e646961204c6567616c>: "12.0 12.0 597.36 965.76" 
+
+*%==== Information About Media Sizes ========
+
+*DefaultPaperDimension: Letter
+*PaperDimension Letter/<4c6574746572>: "612 792"
+*PaperDimension Legal/<4c6567616c>: "612 1008"
+*PaperDimension Executive/<457865637574697665>: "522 756"
+*PaperDimension A4/<4134>: "595 842"
+*PaperDimension A5/<4135>: "420 595"
+*PaperDimension A5L/<4135204c6f6e672045646765>: "420 595"
+*PaperDimension A6/<4136>: "297 420"
+*PaperDimension Env10/<436f6d2d3130>: "297 684"
+*PaperDimension EnvMonarch/<4d6f6e61726368>: "279 540"
+*PaperDimension EnvDL/<444c>: "312 624"
+*PaperDimension EnvC5/<4335>: "459 649"
+*PaperDimension EnvISOB5/<4235>: "499 709"
+*%*PaperDimension EnvISOB6/B6 : "354 499"
+*PaperDimension FanFoldGermanLegal/<466f6c696f>: "612 936"
+*PaperDimension 3x5/<3320782035>: "216 360"
+*PaperDimension MexicanLegal/<4d657869636f204c6567616c>: "612 963" 
+*PaperDimension IndiaLegal/<496e646961204c6567616c>: "609 978" 
+
+*%==== Custom Page Sizes ====================
+*NonUIOrderDependency: 40 AnySetup *CustomPageSize
+*VariablePaperSize: True
+*LeadingEdge Short: ""
+*LeadingEdge Long: ""
+*DefaultLeadingEdge: Short
+*MaxMediaWidth: "612"
+*MaxMediaHeight: "1008"
+*HWMargins: 13 13 13 13
+*CustomPageSize True: "
+	<</BRCustomPageSize true>> setpagedevice 
+	exch pop exch pop 0 eq{exch}if 
+	<< /PageSize [ 5 -2 roll ] /ImagingBBox null >> 
+	setpagedevice 
+"
+*End
+*ParamCustomPageSize Width: 1 points 198 612
+*ParamCustomPageSize Height: 2 points 360 1008
+*ParamCustomPageSize WidthOffset: 3 points 0 0
+*ParamCustomPageSize HeightOffset: 4 points 0 0
+*ParamCustomPageSize Orientation: 5 int 0 1
+
+
+*%==== 5.14 Finishing Features =================================
+*%%%%% Resolution and Appearance Control %%%%%
+*DefaultResolution: 1200dpi
+*OpenUI *CAPT/<5072696e74205175616c697479>:PickOne
+*OrderDependency: 10 AnySetup *CAPT
+*DefaultCAPT: Middle
+*CAPT	SFine/<3132303020647069>: "<</HWResolution [1200 1200] >> setpagedevice 
+statusdict/true1200 known{statusdict begin true true1200 end}if
+"
+*CAPT	Fine/<48512031323030>: "<</HWResolution [1200 1200] >> setpagedevice
+statusdict/true1200 known{statusdict begin false true1200 end}if
+"
+*CAPT	Middle/<36303020647069>: "<</HWResolution [600 600] >> setpagedevice"
+*CAPT Low/<33303020647069>: "<</HWResolution [300 300] >> setpagedevice"
+*CloseUI: *CAPT
+
+*%==== 5.13 Media Handling Features ============================
+*OpenUI *BRMediaType/<4d656469612054797065>: PickOne
+*OrderDependency: 28 AnySetup *BRMediaType
+*DefaultBRMediaType:Plain
+*BRMediaType Plain/<506c61696e205061706572>: "<</MediaType (REGULAR)>>setpagedevice"
+*BRMediaType Thin/<5468696e205061706572>: "<</MediaType (THIN)>>setpagedevice"
+*BRMediaType Thick/<546869636b205061706572>: "<</MediaType (THICK)>>setpagedevice"
+*BRMediaType ThickPaper2/<546869636b6572205061706572>: "<</MediaType (THICK2)>>setpagedevice"
+*BRMediaType BOND/<426f6e64205061706572>: "<</MediaType (BOND)>>setpagedevice"
+*BRMediaType Env/<456e76656c6f706573>: "<</MediaType (ENVELOPES)>>setpagedevice"
+*BRMediaType EnvThick/<456e762e20546869636b>: "<</MediaType (ENVTHICK)>>setpagedevice"
+*BRMediaType EnvThin/<456e762e205468696e>: "<</MediaType (ENVTHIN)>>setpagedevice"
+*BRMediaType Recycled/<52656379636c6564205061706572>: "<</MediaType (RECYCLED)>>setpagedevice"
+*BRMediaType Label/<4c6162656c>: "<</MediaType (LABEL)>>setpagedevice"
+*BRMediaType Letterhead/<4c657474657268656164>: "<</MediaType (LETTERHEAD)>>setpagedevice"
+*BRMediaType ColoredPaper/<436f6c6f726564205061706572>: "<</MediaType (COLOR)>>setpagedevice"
+*%*BRMediaType HolePunched/Hole Punched: "<</MediaType (HOLEPUNCHED)>>setpagedevice"
+*CloseUI: *BRMediaType
+
+*OpenUI *InputSlot: PickOne
+*OrderDependency: 19 AnySetup *InputSlot
+*DefaultInputSlot: AutoSelect
+*InputSlot AutoSelect/<4175746f2053656c656374206279205072696e746572>: "<</ManualFeed false /BRTraysw true >> setpagedevice"
+*InputSlot Tray1/<5472617931>: "<</ManualFeed false /BRTraysw false /BRFeeder 0>> setpagedevice"
+*InputSlot Tray2/<5472617932>: "<</ManualFeed false /BRTraysw false /BRFeeder 1>> setpagedevice"
+*InputSlot Tray3/<5472617933>: "<</ManualFeed false /BRTraysw false /BRFeeder 2>> setpagedevice"
+*InputSlot Tray4/<5472617934>: "<</ManualFeed false /BRTraysw false /BRFeeder 3>> setpagedevice"
+*%*InputSlot Tray5/Tray5: "<</ManualFeed false /BRTraysw false /BRFeeder 5>> setpagedevice"
+*InputSlot MPTray/<4d502054726179>: "<</ManualFeed false /BRTraysw false /BRFeeder 4>> setpagedevice"
+*CloseUI: *InputSlot
+
+*RequiresPageRegion All:True
+
+*%*OpenUI *ManualFeed/Manual: Boolean
+*%*OrderDependency: 19 AnySetup *ManualFeed
+*%*DefaultManualFeed: False
+*%*ManualFeed True:  "<</ManualFeed true>> setpagedevice"
+*%*ManualFeed False: "<</ManualFeed false>> setpagedevice"
+*%*CloseUI: *ManualFeed
+
+*%=== Duplex ================================
+*OpenUI *Duplex: PickOne
+*OrderDependency: 25 AnySetup *Duplex
+*DefaultDuplex: DuplexNoTumble
+*Duplex DuplexTumble: "<</Duplex true /Tumble true>>setpagedevice"
+*Duplex DuplexNoTumble: "<</Duplex true /Tumble false>>setpagedevice"
+*Duplex None: "<</Duplex false /Tumble false>>setpagedevice"
+*CloseUI: *Duplex
+
+*%=== Use Std. Tray when full =============================
+*%*OpenUI *BROutbinFull/Use Std. Tray when full: PickOne
+*%*OrderDependency: 17 AnySetup *BROutbinFull
+*%*DefaultBROutbinFull: False
+*%*BROutbinFull True/On: "<</BROutbinFull 1>>setpagedevice"
+*%*BROutbinFull False/Off: "<</BROutbinFull 0>>setpagedevice"
+*%*CloseUI: *BROutbinFull
+
+*%=== Output Bin =============================
+
+*% === Collate ==========
+
+
+*%=== JobHold ================================
+*%*OpenUI *BRJobHold/Secure Print: PickOne
+*%*OrderDependency: 21 AnySetup *BRJobHold
+*%*DefaultBRJobHold: None
+*%*BRJobHold None/Off: "<</BRHold 0>>setpagedevice"
+*%*BRJobHold Private/On: "<</BRHold 2 /BRHoldType 1>>setpagedevice"
+*%*CloseUI: *BRJobHold
+
+*%*OpenUI *BRJobPIN/Password: PickOne
+*%*OrderDependency: 22 AnySetup *BRJobPIN
+*%*DefaultBRJobPIN: HoldKey0
+*%*BRJobPIN HoldKey0/0000: "<</BRHoldKey 0>> setpagedevice"
+*%*BRJobPIN HoldKey1/1002: "<</BRHoldKey 1002>> setpagedevice"
+*%*BRJobPIN HoldKey2/2833: "<</BRHoldKey 2833>> setpagedevice"
+*%*BRJobPIN HoldKey3/3410: "<</BRHoldKey 3410>> setpagedevice"
+*%*BRJobPIN HoldKey4/4791: "<</BRHoldKey 4791>> setpagedevice"
+*%*BRJobPIN HoldKey5/0052: "<</BRHoldKey 0052>> setpagedevice"
+*%*BRJobPIN HoldKey6/9612: "<</BRHoldKey 9612>> setpagedevice"
+*%*BRJobPIN HoldKey7/0438: "<</BRHoldKey 0438>> setpagedevice"
+*%*BRJobPIN HoldKey8/7328: "<</BRHoldKey 7328>> setpagedevice"
+*%*BRJobPIN HoldKey9/0001: "<</BRHoldKey 0001>> setpagedevice"
+*%*CloseUI: *BRJobPIN
+
+*%*OpenUI *BRUser/User Name: PickOne
+*%*OrderDependency: 91 AnySetup *BRUser
+*%*DefaultBRUser: UserSystem
+*%*BRUser UserSystem/System Name: "
+*%"
+*%*End
+*%*CloseUI: *BRUser
+
+*%*OpenUI *BRJobName/Job Name: PickOne
+*%*OrderDependency: 92 AnySetup *BRJobName
+*%*DefaultBRJobName: JobNameSystem
+*%*BRJobName JobNameSystem/System Name: ""
+*%*BRJobName JobName1/1: "%%BRTitle: 1
+*%"
+*%*End
+*%*BRJobName JobName2/2: "%%BRTitle: 2
+*%"
+*%*End
+*%*BRJobName JobName3/3: "%%BRTitle: 3
+*%"
+*%*End
+*%*BRJobName JobName4/4: "%%BRTitle: 4
+*%"
+*%*End
+*%*BRJobName JobName5/5: "%%BRTitle: 5
+*%"
+*%*End
+*%*BRJobName JobName6/6: "%%BRTitle: 6
+*%"
+*%*End
+*%*BRJobName JobName7/7: "%%BRTitle: 7
+*%"
+*%*End
+*%*BRJobName JobName8/8: "%%BRTitle: 8
+*%"
+*%*End
+*%*BRJobName JobName9/9: "%%BRTitle: 9
+*%"
+*%*End
+*%*CloseUI: *BRJobName
+
+*% Toner Save ===============
+*OpenUI *TonerSaveMode/<546f6e65722053617665204d6f6465>: Boolean
+*DefaultTonerSaveMode: False
+*OrderDependency: 10 AnySetup  *TonerSaveMode
+*TonerSaveMode False/<4f6666>: "
+	statusdict/tonersave known{statusdict begin false tonersave end}if
+"
+*End
+*TonerSaveMode True/<4f6e>: "
+	statusdict/tonersave known{statusdict begin true tonersave end}if
+"
+*End
+*CloseUI: *TonerSaveMode
+
+*% Sleep Time ===============
+*OpenUI *Sleep/<536c6565702054696d65205b4d696e2e5d>: PickOne
+*DefaultSleep: PrinterDefault
+*OrderDependency: 10 AnySetup  *Sleep
+*Sleep PrinterDefault/<5072696e7465722044656661756c74>: ""
+*Sleep 2minutes/2: "statusdict/powersavetime known{statusdict begin 2 powersavetime end}if"
+*Sleep 10minutes/10: "statusdict/powersavetime known{statusdict begin 10 powersavetime end}if"
+*Sleep 30minutes/30: "statusdict/powersavetime known{statusdict begin 30 powersavetime end}if"
+*CloseUI: *Sleep
+
+*% Halftone Screen Lock Information ===============
+*OpenUI *ScreenLock/<48616c66746f6e652053637265656e204c6f636b>: Boolean
+*OrderDependency: 90 AnySetup *ScreenLock
+*DefaultScreenLock: True
+*ScreenLock True/<4f6e>: "
+    <</HalftoneMode 1>>setuserparams 
+"
+*End
+*ScreenLock False/<4f6666>: "
+    <</HalftoneMode 0>>setuserparams
+"
+*End
+*CloseUI: *ScreenLock
+
+*% Reduced Image ===============
+*OpenUI *BRReducedImage/<48696768205175616c69747920496d616765205072696e74696e67>: Boolean
+*OrderDependency: 131.0 AnySetup *BRReducedImage
+*DefaultBRReducedImage: False
+*BRReducedImage False/<4f6666>: "
+	<</BRReduceImage true>>setpagedevice
+"
+*End
+*BRReducedImage True/<4f6e>: "
+	<</BRReduceImage false>>setpagedevice
+"
+*End
+*CloseUI: *BRReducedImage
+
+*% Improve Print Output ===============
+*OpenUI *ImprovePrintOutput/<496d70726f7665205072696e74204f7574707574>: PickOne
+*OrderDependency: 135.0 AnySetup *ImprovePrintOutput
+*DefaultImprovePrintOutput: None
+*ImprovePrintOutput None/<4f6666>: "
+	<</BRReducePaperCurl false /BRImproveTonerFixing false>>setpagedevice
+"
+*End
+*ImprovePrintOutput ReducePaperCurl/<526564756365205061706572204375726c>: "
+	<</BRReducePaperCurl true /BRImproveTonerFixing false>>setpagedevice
+"
+*End
+*ImprovePrintOutput ImproveTonerFixing/<496d70726f766520546f6e657220466978696e67>: "
+	<</BRReducePaperCurl false /BRImproveTonerFixing true>>setpagedevice
+"
+*End
+*CloseUI: *ImprovePrintOutput
+
+*% Reduce Ghosting ===============
+*%*OpenUI *BRReduceGhost/Ghost Reduction Setting: Boolean
+*%*OrderDependency: 136.0 AnySetup *BRReduceGhost
+*%*DefaultBRReduceGhost: False
+*%*BRReduceGhost False/Off: "
+*%	<</BRReduceGhost false>>setpagedevice
+*%"
+*%*End
+*%*BRReduceGhost True/Reduce Ghosting in High Humidity: "
+*%	<</BRReduceGhost true>>setpagedevice
+*%"
+*%*End
+*%*CloseUI: *BRReduceGhost
+
+*% Density adjustment ===============
+*OpenUI *BRDensityAdjustment/<44656e736974792041646a7573746d656e74>: PickOne
+*OrderDependency: 145.0 AnySetup *BRDensityAdjustment
+*DefaultBRDensityAdjustment: None
+*BRDensityAdjustment None/<5072696e7465722044656661756c74>: ""
+*BRDensityAdjustment M6/-6: "
+	<</BRDensityAdjustment -6 /BRDevBiasAdjust -6>>setpagedevice
+"
+*End
+*BRDensityAdjustment M5/-5: "
+	<</BRDensityAdjustment -5 /BRDevBiasAdjust -5>>setpagedevice
+"
+*End
+*BRDensityAdjustment M4/-4: "
+	<</BRDensityAdjustment -4 /BRDevBiasAdjust -4>>setpagedevice
+"
+*End
+*BRDensityAdjustment M3/-3: "
+	<</BRDensityAdjustment -3 /BRDevBiasAdjust -3>>setpagedevice
+"
+*End
+*BRDensityAdjustment M2/-2: "
+	<</BRDensityAdjustment -2 /BRDevBiasAdjust -2>>setpagedevice
+"
+*End
+*BRDensityAdjustment M1/-1: "
+	<</BRDensityAdjustment -1 /BRDevBiasAdjust -1>>setpagedevice
+"
+*End
+*BRDensityAdjustment 0/0: "
+	<</BRDensityAdjustment 0 /BRDevBiasAdjust 0>>setpagedevice
+"
+*End
+*BRDensityAdjustment 1/1: "
+	<</BRDensityAdjustment 1 /BRDevBiasAdjust 1>>setpagedevice
+"
+*End
+*BRDensityAdjustment 2/2: "
+	<</BRDensityAdjustment 2 /BRDevBiasAdjust 2>>setpagedevice
+"
+*End
+*BRDensityAdjustment 3/3: "
+	<</BRDensityAdjustment 3 /BRDevBiasAdjust 3>>setpagedevice
+"
+*End
+*BRDensityAdjustment 4/4: "
+	<</BRDensityAdjustment 4 /BRDevBiasAdjust 4>>setpagedevice
+"
+*End
+*BRDensityAdjustment 5/5: "
+	<</BRDensityAdjustment 5 /BRDevBiasAdjust 5>>setpagedevice
+"
+*End
+*BRDensityAdjustment 6/6: "
+	<</BRDensityAdjustment 6 /BRDevBiasAdjust 6>>setpagedevice
+"
+*End
+*CloseUI: *BRDensityAdjustment
+
+*%==== 5.17 Gray Levels and Halftoninig ========================
+*AccurateScreenSupport: False
+*ScreenFreq:  "60.0"
+*ScreenAngle: "45.0"
+*DefaultScreenProc: Dot
+*ScreenProc Dot: "{1.0 add 180 mul 1 add sin 0.001 add exch 1.0 add 180 mul 2 add sin mul}"
+
+*DefaultTransfer: Null
+*Transfer Null:		"{}"
+*Transfer Null.Inverse:	"{1 exch sub}"
+
+*%==== 5.18 Color Issues =======================================
+*% BlackSubstitution -> Original UI
+
+*%==== 5.19 Color Separation Keywords ==========================
+*DefaultColorSep: ProcessBlack
+*ColorSepScreenFreq ProcessBlack.71lpi.600dpi/71 lpi / 600 dpi: "70.7107"
+*ColorSepScreenFreq CustomColor.71lpi.600dpi/71 lpi / 600 dpi: "70.7107"
+*ColorSepScreenFreq ProcessCyan.71lpi.600dpi/71 lpi / 600 dpi: "63.2456"
+*ColorSepScreenFreq ProcessMagenta.71lpi.600dpi/71 lpi / 600 dpi: "63.2456"
+*ColorSepScreenFreq ProcessYellow.71lpi.600dpi/71 lpi / 600 dpi: "66.6667"
+*ColorSepScreenFreq ProcessBlack.60lpi.300dpi/60 lpi / 300 dpi: "60"
+*ColorSepScreenFreq CustomColor.60lpi.300dpi/60 lpi / 300 dpi: "60"
+*ColorSepScreenFreq ProcessCyan.60lpi.300dpi/60 lpi / 300 dpi: "60"
+*ColorSepScreenFreq ProcessMagenta.60lpi.300dpi/60 lpi / 300 dpi: "60"
+*ColorSepScreenFreq ProcessYellow.60lpi.300dpi/60 lpi / 300 dpi: "60"
+*ColorSepScreenFreq ProcessBlack.53lpi.300dpi/53 lpi / 300 dpi: "53.033"
+*ColorSepScreenFreq CustomColor.53lpi.300dpi/53 lpi / 300 dpi: "53.033"
+*ColorSepScreenFreq ProcessCyan.53lpi.300dpi/53 lpi / 300 dpi: "47.4342"
+*ColorSepScreenFreq ProcessMagenta.53lpi.300dpi/53 lpi / 300 dpi:"47.4342"
+*ColorSepScreenFreq ProcessYellow.53lpi.300dpi/53 lpi / 300 dpi: "50.0"
+*ColorSepScreenAngle ProcessBlack.71lpi.600dpi/71 lpi / 600 dpi: "45.0"
+*ColorSepScreenAngle CustomColor.71lpi.600dpi/71 lpi / 600 dpi: "45.0"
+*ColorSepScreenAngle ProcessCyan.71lpi.600dpi/71 lpi / 600 dpi: "71.5651"
+*ColorSepScreenAngle ProcessMagenta.71lpi.600dpi/71 lpi / 600 dpi: "18.4349"
+*ColorSepScreenAngle ProcessYellow.71lpi.600dpi/71 lpi / 600 dpi: "0.0"
+*ColorSepScreenAngle ProcessBlack.60lpi.300dpi/60 lpi / 300 dpi: "45"
+*ColorSepScreenAngle CustomColor.60lpi.300dpi/60 lpi / 300 dpi: "45"
+*ColorSepScreenAngle ProcessCyan.60lpi.300dpi/60 lpi / 300 dpi: "15"
+*ColorSepScreenAngle ProcessMagenta.60lpi.300dpi/60 lpi / 300 dpi: "75"
+*ColorSepScreenAngle ProcessYellow.60lpi.300dpi/60 lpi / 300 dpi: "0"
+*ColorSepScreenAngle ProcessBlack.53lpi.300dpi/53 lpi / 300 dpi: "45.0"
+*ColorSepScreenAngle CustomColor.53lpi.300dpi/53 lpi / 300 dpi:  "45.0"
+*ColorSepScreenAngle ProcessCyan.53lpi.300dpi/53 lpi / 300 dpi:  "71.5651"
+*ColorSepScreenAngle ProcessMagenta.53lpi.300dpi/53 lpi / 300 dpi: "18.4349"
+*ColorSepScreenAngle ProcessYellow.53lpi.300dpi/53 lpi / 300 dpi: "0.0"
+*End
+
+*InkName: ProcessBlack/Process Black
+*InkName: CustomColor/Custom Color
+*InkName: ProcessCyan/Process Cyan
+*InkName: ProcessMagenta/Process Magenta
+*InkName: ProcessYellow/Process Yellow
+
+*%==== 5.20 Font Related Keywords ==============================
+*DefaultFont: Courier
+*Font AvantGarde-Book: Standard "(001.006S)" Standard ROM
+*Font AvantGarde-BookOblique: Standard "(001.006S)" Standard ROM
+*Font AvantGarde-Demi: Standard "(001.007S)" Standard ROM
+*Font AvantGarde-DemiOblique: Standard "(001.007S)" Standard ROM
+*Font Bookman-Demi: Standard "(001.004S)" Standard ROM
+*Font Bookman-DemiItalic: Standard "(001.004S)" Standard ROM
+*Font Bookman-Light: Standard "(001.004S)" Standard ROM
+*Font Bookman-LightItalic: Standard "(001.004S)" Standard ROM
+*Font Courier: Standard "(002.004S)" Standard ROM
+*Font Courier-Bold: Standard "(002.004S)" Standard ROM
+*Font Courier-BoldOblique: Standard "(002.004S)" Standard ROM
+*Font Courier-Oblique: Standard "(002.004S)" Standard ROM
+*Font Helvetica: Standard "(001.006S)" Standard ROM
+*Font Helvetica-Bold: Standard "(001.007S)" Standard ROM
+*Font Helvetica-BoldOblique: Standard "(001.007S)" Standard ROM
+*Font Helvetica-Narrow: Standard "(001.006S)" Standard ROM
+*Font Helvetica-Narrow-Bold: Standard "(001.007S)" Standard ROM
+*Font Helvetica-Narrow-BoldOblique: Standard "(001.007S)" Standard ROM
+*Font Helvetica-Narrow-Oblique: Standard "(001.006S)" Standard ROM
+*Font Helvetica-Oblique: Standard "(001.006S)" Standard ROM
+*Font NewCenturySchlbk-Bold: Standard "(001.009S)" Standard ROM
+*Font NewCenturySchlbk-BoldItalic: Standard "(001.007S)" Standard ROM
+*Font NewCenturySchlbk-Italic: Standard "(001.006S)" Standard ROM
+*Font NewCenturySchlbk-Roman: Standard "(001.007S)" Standard ROM
+*Font Palatino-Bold: Standard "(001.005S)" Standard ROM
+*Font Palatino-BoldItalic: Standard "(001.005S)" Standard ROM
+*Font Palatino-Italic: Standard "(001.005S)" Standard ROM
+*Font Palatino-Roman: Standard "(001.005S)" Standard ROM
+*Font Times-Bold: Standard "(001.007S)" Standard ROM
+*Font Times-BoldItalic: Standard "(001.009S)" Standard ROM
+*Font Times-Italic: Standard "(001.007S)" Standard ROM
+*Font Times-Roman: Standard "(001.007S)" Standard ROM
+*Font ZapfChancery-MediumItalic: Standard "(001.007S)" Standard ROM
+*Font ZapfDingbats: Special "(001.004S)" Special ROM
+*Font Symbol: Special "(001.007S)" Special ROM
+*Font Alaska: Standard "(001.005)" Standard ROM
+*Font AlaskaExtrabold: Standard "(001.005)" Standard ROM
+*Font AntiqueOakland: Standard "(001.005)" Standard ROM
+*Font AntiqueOakland-Bold: Standard "(001.005)" Standard ROM
+*Font AntiqueOakland-Oblique: Standard "(001.005)" Standard ROM
+*Font ClevelandCondensed: Standard "(001.005)" Standard ROM
+*Font Connecticut: Standard "(001.005)" Standard ROM
+*Font Guatemala-Antique: Standard "(001.005)" Standard ROM
+*Font Guatemala-Bold: Standard "(001.005)" Standard ROM
+*Font Guatemala-Italic: Standard "(001.005)" Standard ROM
+*Font Guatemala-BoldItalic: Standard "(001.005)" Standard ROM
+*Font LetterGothic: Standard "(001.005)" Standard ROM
+*Font LetterGothic-Bold: Standard "(001.005)" Standard ROM
+*Font LetterGothic-Oblique: Standard "(001.005)" Standard ROM
+*Font Maryland: Standard "(001.005)" Standard ROM
+*Font Oklahoma: Standard "(001.005)" Standard ROM
+*Font Oklahoma-Bold: Standard "(001.005)" Standard ROM
+*Font Oklahoma-Oblique: Standard "(001.005)" Standard ROM
+*Font Oklahoma-BoldOblique: Standard "(001.005)" Standard ROM
+*Font Utah: Standard "(001.005)" Standard ROM
+*Font Utah-Bold: Standard "(001.005)" Standard ROM
+*Font Utah-Oblique: Standard "(001.005)" Standard ROM
+*Font Utah-BoldOblique: Standard "(001.005)" Standard ROM
+*Font UtahCondensed: Standard "(001.005)" Standard ROM
+*Font UtahCondensed-Bold: Standard "(001.005)" Standard ROM
+*Font UtahCondensed-Oblique: Standard "(001.004)" Standard ROM
+*Font UtahCondensed-BoldOblique: Standard "(001.005)" Standard ROM
+*Font BermudaScript: Standard "(001.005)" Standard ROM
+*Font Germany: Standard "(001.005)" Standard ROM
+*Font SanDiego: Standard "(001.005)" Standard ROM
+*Font US-Roman: Standard "(001.005)" Standard ROM
+*?FontQuery: "
+save
+count 1 gt
+  {exch dup dup
+   =string cvs (/) print print (:) print
+   FontDirectory exch known
+     {pop(Yes)}
+     {(fonts/)AppendName exch pop mark exch
+      {}=string filenameforall counttomark
+      0 gt
+        {cleartomark(Yes)}
+        {cleartomark(No)}ifelse
+     }ifelse
+   =
+  }if
+  (*) = flush
+restore
+"
+*End
+*?FontList: "
+save
+  FontDirectory{pop ==}forall
+  (fonts/*)
+  {dup length 6 sub 6 exch getinterval cvn ==
+  }=string filenameforall
+  (*) = flush
+restore
+"
+*End
+
+
+*%==== 5.21 Printer Messages ===================================
+*% 
+*% Printer Message 
+*%
+*PrinterError: "service call"
+*PrinterError: "cover open"
+*PrinterError: "end of ink"
+*PrinterError: "out of maintenance paper"
+*PrinterError: "out of paper"
+*PrinterError: "paper jam"
+*PrinterError: "manual feed time out"
+*PrinterError: "load paper letter size"
+*PrinterError: "load paper legal size"
+*PrinterError: "load paper B5 size"
+*PrinterError: "load paper A4 size"
+*PrinterError: "offline"
+
+*Status: "idle"
+*Status: "busy"
+*Status: "waiting"
+*Status: "printing"
+*Status: "warming up"
+*Status: "PrinterError: service call"
+*Status: "PrinterError: cover open"
+*Status: "PrinterError: end of ink"
+*Status: "PrinterError: out of paper"
+*Status: "PrinterError: paper jam"
+*Status: "PrinterError: manual feed time out"
+*Status: "PrinterError: load paper letter size"
+*Status: "PrinterError: load paper legal size"
+*Status: "PrinterError: load paper B5 size"
+*Status: "PrinterError: load paper A4 size"
+*Status: "PrinterError: offline"
+
+*% Input Sources (format: %%[ status: <stat>; source: <one of these> ]%% )
+*Source: "Serial"
+*Source: "Parallel"
+*Source: "EtherTalk"
+*Source: "LPR"
+*Source: "PrintServer"
+*Source: "Internal"
+
+*Message: "%%[ exitserver: permanent state may be changed ]%%"
+*Message: "%%[ Flushing: rest of job (to end-of-file) will be ignored ]%%"
+*Message: "\FontName\ not found, using BR-03B."
+*%==== 5.22 System Management ==================================
+*Password: "0"
+*ExitServer: "
+	serverdict begin 0 exitserver
+"
+*End
+*Reset: "
+	clear cleardictstack
+	serverdict begin 0 exitserver
+	systemdict /quit get exec
+ "
+*End
 
